@@ -14,5 +14,20 @@ class LayerNorm(nn.Module):
         return LN
     
         
-class GELU():
+class GELU(nn.Module):
+    def foward(self, x):
+        return 0.5 * x * (1 + torch.tanh((2 / torch.pi)**0.5 * (x + 0.044715 * x ** 3)))
     
+
+class FeedFoward (nn.Module):
+    def __init__(self, emb_dim, drop_rate = 0.1):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(emb_dim, 4 * emb_dim),
+            GELU(),
+            nn.Linear(4 * emb_dim, emb_dim),
+            nn.Dropout(drop_rate)
+        )
+    def forward(self, x):
+        x = self.net(x)
+        return x
