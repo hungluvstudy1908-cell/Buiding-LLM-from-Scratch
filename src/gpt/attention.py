@@ -4,7 +4,7 @@ import torch.nn as nn
 
 
 
-class MuitiheadAttentio(nn.Module):
+class MultiheadAttention(nn.Module):
     def __init__(self, d_in, d_out, context_length, num_head, dropout_rate ,qkv_bias = False):
         super().__init__()
         assert d_out % num_head == 0, "d_out % num_head phai == 0"

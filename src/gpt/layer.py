@@ -14,3 +14,5 @@ class LayerNorm(nn.Module):
         return LN
     
         
+class GELU():
+    
